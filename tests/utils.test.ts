@@ -1,4 +1,4 @@
-import { generator } from '../utils';
+import { generator } from '../src/utils';
 
 test('generator return', async () => {
   let index = 0;

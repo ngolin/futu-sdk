@@ -1,4 +1,4 @@
-import { getFutuApi } from '../';
+import { getFutuApi } from '../src';
 
 test('futu-sdk GetAccList', async () => {
   await new Promise<void>(async resolve => {

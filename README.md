@@ -27,7 +27,7 @@ $ npm install --save futu-sdk
 
 ```ts
 import { getFutuApi } from 'futu-sdk';
-// import { Trd_Common } from 'futu-sdk/proto';
+// import { Trd_Common } from 'futu-proto';
 
 const { webRequest, webSocket } = getFutuApi('ws://127.0.0.1:33333', '9d261112869397f0');
 try {

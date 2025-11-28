@@ -1,4 +1,4 @@
-import * as proto from 'futu-sdk/proto';
+import * as proto from 'futu-proto';
 import { generator } from '../utils';
 import REQ from './req';
 

@@ -1,6 +1,6 @@
 import crypto from 'crypto';
 import WebSocket from 'ws';
-import { encodeBuffer, decodeBuffer, WsUrl } from './utils';
+import { encodeBuffer, decodeBuffer } from './utils';
 import { WebRequest, RequestFn } from './fetch';
 
 export interface IWebRequest extends Omit<WebRequest, 'InitWebSocket'> {}
@@ -13,7 +13,7 @@ export interface IWebRequest extends Omit<WebRequest, 'InitWebSocket'> {}
  *
  * ```ts
  * import { getFutuApi } from 'futu-sdk';
- * // import { Trd_Common } from 'futu-sdk/proto';
+ * // import { Trd_Common } from 'futu-proto';
  *
  * const { webRequest, webSocket } = getFutuApi('ws://127.0.0.1:33333', '9d261112869397f0');
  * try {
@@ -24,7 +24,7 @@ export interface IWebRequest extends Omit<WebRequest, 'InitWebSocket'> {}
  * }
  * ```
  * @param wsUrl 连接本地 WebSocket 的地址，如 `ws://127.0.0.1:33333`
- * @param key WebSocket 密钥，每次启动 OpenD 可能都不一样
+ * @param key WebSocket 密钥，每次启动 OpenD_GUI 不设置都会随机生成，CLI 暂不清楚如何获取这个密钥
  * @returns `{ webRequest: WebRequest, webSocket: WebSocket }`
  */
 export const getFutuApi = (wsUrl: string, key: string) => {
@@ -70,12 +70,4 @@ export const getFutuApi = (wsUrl: string, key: string) => {
   });
 
   return { webSocket, webRequest: new WebRequest(requestFnPromise) as IWebRequest };
-};
-
-/**
- * @deprecated 已废弃，请使用 `const { webRequest } = getFutuApi(`ws://${host}:${port}`, key);`
- */
-export const getWebRequest = ({ host = '127.0.0.1', port = 33333, key }: WsUrl): IWebRequest => {
-  const { webRequest } = getFutuApi(`ws://${host}:${port}`, key);
-  return webRequest;
 };
